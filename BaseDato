@@ -1,0 +1,57 @@
+package org.uscosoft.utilidad;
+
+import java.sql.Connection;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class BaseDato {
+  
+	public Connection getConexion(String perfil) {
+		Connection conexion = null;
+		
+		String fuente_datos = "";
+
+		System.out.println("BaseDato.getConexion() - perfil: " + perfil);
+
+
+		if (perfil.equals("LCMS")) {
+			fuente_datos = "java:jboss/datasources/lcmsDS";
+		}
+		if (perfil.equals("ADMINISTRADOR_SISTEMA")) {
+			fuente_datos = "java:jboss/datasources/lcmsAdministradorDS";
+		}
+		
+		if (perfil.equals("DOCENTE")) {
+			fuente_datos = "java:jboss/datasources/lcmsDocenteDS";
+		}
+		
+		if (perfil.equals("ESTUDIANTE")) {
+			fuente_datos = "java:jboss/datasources/lcmsEstudianteDS";
+		}
+		
+		if (perfil.equals("USUARIO")) {
+			fuente_datos = "java:jboss/datasources/lcmsUsuarioDS";
+		}
+		
+		if (perfil.equals("INVITADO")) {
+			fuente_datos = "java:jboss/datasources/lcmsInvitadoDS";
+		}
+		
+		try {
+			Context ctx = new InitialContext();
+			DataSource dataSource = null;
+
+			dataSource = (DataSource) ctx.lookup(fuente_datos);
+			conexion = dataSource.getConnection();
+		} 
+		catch (Exception e) {
+			System.out.println("getConexion(1) - ERROR: " + fuente_datos + " :: " + e.toString());
+		}
+		
+		return conexion;
+	}
+	
+	
+}
