@@ -1,0 +1,25 @@
+package org.uscosoft.tienda;
+
+import java.util.ArrayList;
+
+public class Producto {
+
+  public ArrayList getProducto() {
+		ArrayList thisArrayList = new ArrayList();
+
+		String[] datos1 = { "Pulidora", "pulidora.jpg" };
+		String[] datos2 = { "Taladro", "taladro.jpg" };
+		String[] datos3 = { "Llave", "llave.jpg" };
+		String[] datos4 = { "Metro", "metro.jpg" };
+		String[] datos5 = { "Sierra", "sierra.jpg" };
+
+		
+		thisArrayList.add(datos1);
+		thisArrayList.add(datos2);
+		thisArrayList.add(datos3);
+		thisArrayList.add(datos4);
+		thisArrayList.add(datos5);
+
+		return thisArrayList;
+	}
+}
