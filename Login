@@ -1,0 +1,95 @@
+package org.uscosoft.seguridad;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet(description = "Login", urlPatterns = { "/Login" })
+public class Login extends HttpServlet {
+  private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+    
+    String PARAMETRO = "";
+    
+    public void init(){
+    	ServletConfig config = getServletConfig();
+		PARAMETRO = config.getInitParameter("usuario");
+	}
+    
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		// Metodo para imprimir
+		PrintWriter out = response.getWriter();
+		
+		// request.get parameter: Captura los datos de la red
+		String usuario = request.getParameter("usuario");
+		//String clave = request.getParameter("clave");
+		
+		out.println(PARAMETRO);
+		
+		/*
+		 * out.println("<p>User: " + usuario);
+		 * out.println("<p>Password: " + clave);
+		*/
+		
+		
+		ServletConfig config = getServletConfig();
+		String USUARIO_VALIDO = config.getInitParameter("usuario");
+		
+		
+		
+		//ServletConfig config = getServletConfig();
+		//String USUARIO_VALIDO = config.getInitParameter("usuario");
+		
+		out.println(usuario + "------" + USUARIO_VALIDO);
+		
+		/*
+		if(usuario.equals(USUARIO_VALIDO)){
+			response.sendRedirect("http://www.cnn.com");
+		}
+			else{
+				response.sendRedirect("login/error.jsp");
+			}
+		
+		*/
+		/*
+		if(usuario.equals("PEDRO")){
+			response.sendRedirect("http://www.cnn.com");
+		}
+			else{
+				response.sendRedirect("login/error.jsp");
+			}
+		
+		*/
+		
+	}
+
+}
