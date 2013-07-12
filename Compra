@@ -1,0 +1,68 @@
+package org.uscosoft.tienda;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class compra
+ */
+public class Compra extends HttpServlet {
+  private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public Compra() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		PrintWriter out = response.getWriter();
+
+		response.setContentType("text/html; charset=ISO-8859-1");
+
+		out.println("LISTADO DE PRODUCTOS");
+
+		Producto producto = new Producto();
+		ArrayList thisArrayList = producto.getProducto();
+
+		out.println("<table>");
+
+		for (int i = 0; i < thisArrayList.size(); i = i + 1) {
+			String[] dato = (String[]) thisArrayList.get(i);
+
+			out.println("<tr>");
+			out.println("<td><img width='120' height='120' src='imagenes/"
+					+ dato[1] + "'></td>");
+			out.println("<td>" + dato[0] + "</td>");
+			out.println("</tr>");
+		}
+
+		out.println("</table>");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
